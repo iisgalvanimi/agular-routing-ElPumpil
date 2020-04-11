@@ -10,15 +10,21 @@ export class SpotifyService {
   //Ottengo il modulo HttpClient
   constructor(private http: HttpClient) { }
 
-  searchTrack(query: string) {
-    const url = `https://api.spotify.com/v1/search?q=${query}&type=track`;
+
+ getTrack(id: string) {
+    const url = `https://api.spotify.com/v1/tracks/${id}`;
     const headers = new HttpHeaders({
       Authorization:
         'Bearer BQB6YdW0wfVWKJVjFuu0SplNVzOfA2xgBMW3-k1lqz8GrPpvVTp0EL5MNZUTqwwjN6I7_j-SOKunCte1FGBQGj3ZBXCYToWyYD5n012WylhW2blT6ik4-2aJNKEGAOnc0ey39MPqGVlY48Qd"'
     });
+
+    return this.http.get(url, { headers });
+  }
+
 
     let obsTracks = this.http.get(url, { headers });
     return obsTracks;
  //Ritorno un observable ai componenti che richiedono il servizio
   }
 }
+
